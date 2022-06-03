@@ -1,0 +1,154 @@
+@import '_variables.scss';
+@import '_mixin.scss';
+
+.contacts {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  height: 100%;
+
+  &__content {
+    position: relative;
+    z-index: 3;
+    display: grid;
+    grid-template-columns: 1fr repeat(2, minmax(auto, 545px)) 1fr;
+    padding-top: 170px;
+    gap: 20px;
+  }
+
+  &__description {
+    grid-column: 2 / 3;
+  }
+
+  &__subtitle {
+    margin-bottom: 16px;
+  }
+
+  &__text {
+    margin-bottom: 23px;
+  }
+
+  &__text-mini {
+    margin-bottom: 12px;
+    color: #C4C4C4;
+  }
+
+  &__address {
+    display: grid;
+    gap: 10px;
+    font-style: normal;
+    margin-bottom: 20px;
+  }
+
+  &__sity {
+    display: inline-block;
+    @include setFontStyleNotoSans();
+    font-size: 16px;
+    font-weight: $fontWeightRegular;
+    color: $colorBlackText;
+  }
+
+  &__time {
+    display: inline-block;
+    @include setFontStyleNotoSans();
+    font-size: 14px;
+    font-weight: $fontWeightLight;
+    color: #4E4E4E;
+  }
+
+  &__contacts {
+    display: grid;
+    grid-auto-flow: column;
+    margin-bottom: 38px;
+  }
+
+  &__list-phone {
+    @include clearListStyles();
+  }
+
+  &__list-phone li:not(:last-child) {
+    margin-bottom: 13px;
+  }
+
+  &__phone {
+    @include setFontStyleNotoSans();
+    font-size: 16px;
+    font-weight: $fontWeightRegular;
+    color: $colorBlackText;
+  }
+
+  &__list-mail {
+    @include clearListStyles();
+  }
+
+  &__mail {
+    position: relative;
+    display: inline-block;
+    @include setFontStyleNotoSans();
+    font-size: 16px;
+    font-weight: $fontWeightRegular;
+    color: $colorGold;
+
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      width: 100%;
+      height: 1px;
+      background-color: $colorGold;
+    }
+  }
+}
+
+.social {
+  @include clearListStyles();
+  display: inline-grid;
+  gap: 10px;
+  grid-auto-flow: column;
+
+  &__link {
+    display: inline-block;
+    // height: 30px;
+  }
+
+  &__vk,
+  &__facebook,
+  &__instagram {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.form {
+  display: grid;
+  gap: 25px;
+  justify-items: start;
+
+  &__label {
+    position: relative;
+    width: 100%;
+  }
+
+  &__input {
+    @include setFontStyleNotoSans();
+    width: 100%;
+    padding: 12px 24px;
+    border: 1px solid $colorWhiteTextMini;
+    font-size: 14px;
+    font-weight: $fontWeightLight;
+    color: $colorGreyDarkDeep;
+  }
+
+  &__input--area {
+    resize: none;
+    min-height: 137px;
+  }
+
+  &__text {
+    @include setFontStyleNotoSans();
+    font-size: 12px;
+    font-weight: $fontWeightRegular;
+    line-height: 140%;
+    color: $colorGreyDarkDeep;
+  }
+}

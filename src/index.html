@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+@@include('html/head.html',{
+"title": "ГРАН-МАР"
+})
+
+<body>
+  <div class="wrapper">
+    <div class="page-loader _top"></div>
+    @@include('html/header.html',{})
+    <main class="page" data-mobile="false">
+      <ul class="page__wrapper">
+
+        <li class="page__screen screen page__screen--light">
+          @@include('html/hero.html',{})
+        </li>
+        <li class="page__screen screen page__screen--black">
+          @@include('html/aboutus.html',{})
+        </li>
+        <li class="page__screen screen page__screen--black" id="gallerey">
+          @@include('html/gallerey.html',{})
+        </li>
+        <li class="page__screen screen page__screen--black">
+          @@include('html/supplier.html',{})
+        </li>
+        <li class="page__screen screen page__screen--light" id="production">
+          @@include('html/production.html',{})
+        </li>
+        <li class="page__screen screen page__screen--black">
+          @@include('html/experience.html',{})
+        </li>
+        <li class="page__screen screen page__screen--light" id="result">
+          @@include('html/result.html',{})
+        </li>
+        <li class="page__screen screen page__screen--black" id="gallerey-2">
+          @@include('html/gallerey-2.html',{})
+        </li>
+        <li class="page__screen screen page__screen--light">
+          @@include('html/colobarate.html',{})
+        </li>
+        <li class="page__screen screen page__screen--black _footer" id="contacts">
+          @@include('html/contacts.html',{})
+        </li>
+
+      </ul>
+      <div class="page__pagination"></div>
+      <div class="page__scroll"></div>
+    </main>
+    @@include('html/footer.html',{})
+  </div>
+</body>
+
+</html>

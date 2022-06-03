@@ -1,0 +1,64 @@
+@import '_variables.scss';
+@import '_mixin.scss';
+
+.production {
+  display: grid;
+  align-items: center;
+  height: 100%;
+  background-color: $colorBlack;
+
+  &__content {
+    display: grid;
+    grid-template-columns: 1fr repeat(2, minmax(auto, 545px)) 1fr;
+    padding-top: 70px;
+    gap: 20px;
+  }
+
+  &__image {
+    grid-column: 2 / 3;
+    display: grid;
+  }
+
+  &__body {
+    grid-column: 3 /4;
+    padding-top: 150px;
+    padding-left: 40px;
+  }
+
+  &__decor {
+    grid-column: 4 / 4;
+    display: grid;
+    padding-top: 150px;
+  }
+
+  &__text-mini {
+    display: grid;
+    grid-template-columns: minmax(auto, 100px) 1fr;
+    grid-auto-flow: column;
+    margin-bottom: 22px;
+    color: $colorBlackText;
+  }
+
+  &__line {
+    display: block;
+    background-color: $colorBlackText;
+  }
+
+  &__subtitle {
+    margin-bottom: 14px;
+    color: $colorWhiteText;
+  }
+
+  &__text {
+    color: $colorWhiteText;
+  }
+
+  &__btn {
+    margin-top: 60px;
+    color: $colorWhiteText;
+  }
+
+  &__inco {
+    stroke: $colorWhiteText;
+  }
+}

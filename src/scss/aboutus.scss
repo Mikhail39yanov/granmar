@@ -1,0 +1,68 @@
+@import '_variables.scss';
+@import '_mixin.scss';
+
+.aboutus {
+  display: grid;
+  align-content: center;
+  height: 100%;
+
+  &__content {
+    display: grid;
+    grid-template-columns: 1fr repeat(2, minmax(auto, 545px)) 1fr;
+    padding-top: 70px;
+    padding-bottom: 20px;
+    gap: 20px;
+  }
+
+  &__body {
+    grid-column: 2 / 3;
+    max-width: 420px;
+    overflow-y: auto;
+  }
+
+  &__text-mini {
+    margin-bottom: 21px;
+  }
+
+  &__subtitle {
+    margin-bottom: 20px;
+  }
+
+  &__text:not(:last-child) {
+    margin-bottom: 20px;
+  }
+
+  &__btn {
+    margin-top: 40px;
+  }
+
+  &__image {
+    grid-column: 3 / 4;
+    position: relative;
+  }
+
+  &__stone-1 {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    max-width: 478px;
+    height: 100%;
+    max-height: 359px;
+    background-color: #1F1F1F;
+    transform: translate(0px, -50%);
+  }
+
+  &__stone-2 {
+    position: absolute;
+    z-index: 1;
+    top: 0%;
+    right: 0;
+    width: 100%;
+    max-width: 419px;
+    height: 100%;
+    max-height: 510px;
+    background: #EBEBEB;
+  }
+}

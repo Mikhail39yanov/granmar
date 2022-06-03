@@ -1,0 +1,63 @@
+@import '_variables.scss';
+@import '_mixin.scss';
+
+.gellerey {
+  display: grid;
+  height: 100%;
+
+  &__content {
+    display: grid;
+    grid-template-columns: 1fr repeat(2, minmax(auto, 545px)) 1fr;
+    padding-top: 70px;
+    gap: 20px;
+    height: 100%;
+  }
+
+  &__body {
+    grid-column: 3 /4;
+    padding-top: 150px;
+    padding-left: 40px;
+  }
+
+  &__full {
+    grid-column: 1 / 3;
+    position: relative;
+  }
+
+  &__image {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__image img {
+    @include setImageSize();
+  }
+
+  &__decor {
+    grid-column: 4 / 4;
+    display: grid;
+    padding-top: 150px;
+  }
+
+  &__text-mini {
+    display: grid;
+    grid-template-columns: minmax(auto, 100px) 1fr;
+    grid-auto-flow: column;
+    margin-bottom: 22px;
+  }
+
+  &__line {
+    display: block;
+  }
+
+  &__subtitle {
+    margin-bottom: 22px;
+  }
+
+  &__btn {
+    margin-top: 42px;
+  }
+}
