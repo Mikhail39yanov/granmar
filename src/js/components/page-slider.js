@@ -1,4 +1,4 @@
-import Swiper, { Navigation, Pagination, Keyboard, Mousewheel, Scrollbar, FreeMode, EffectFade, } from 'swiper'
+import Swiper, { Navigation, Pagination, Keyboard, Mousewheel, Scrollbar, FreeMode, EffectFade } from 'swiper'
 import { gsap } from "gsap"
 
 const wrapper = document.querySelector('.wrapper')
@@ -9,16 +9,16 @@ const footer = document.querySelector('.footer')
 const loader = document.querySelector('.page-loader')
 
 // ,On
-let pageSlider
+let pageSlider = undefined
 
 function mobileSlider() {
-  console.log(pageSlider)
+  // console.log(pageSlider)
 
-  if (window.innerWidth > 576) {
+  if (window.innerWidth > 768) {
     slider.dataset.mobile = 'false'
 
     pageSlider = new Swiper(slider, {
-      modules: [Navigation, Pagination, Keyboard, Mousewheel, Scrollbar, FreeMode, EffectFade,],
+      modules: [Navigation, Pagination, Keyboard, Mousewheel, Scrollbar, FreeMode, EffectFade],
       // Свои классы
       wrapperClass: 'page__wrapper',
       slideClass: 'page__screen',
@@ -29,8 +29,11 @@ function mobileSlider() {
       // Кол-во слайдов для показа
       slidesPerView: 'auto',
 
-      freeMode: false,
+      // Нужно при detroy, чтобы работал скрол на мыше на маленьких экранах
+      // cssMode: true,
 
+      freeMode: false,
+      // a11y: true,
       // Управление клавиатурой
       keyboard: {
         // вкл/выкл
@@ -55,11 +58,11 @@ function mobileSlider() {
       // speed: 3000,
       speed: 0,
       // Обновить свайпер при изменении элементов слайдера
-      // observer: true,
+      observer: true,
       // Обновить свайпер при изменении родительских элементов слайдера
-      // observeParents: true,
+      observeParents: true,
       // Обновить свайпер при изменении дочерних элементов слайдера
-      // observeSlideChildren: true,
+      observeSlideChildren: true,
 
       // Навигация
       // Булеты, текущее положение, прогрессбар
@@ -88,7 +91,9 @@ function mobileSlider() {
           menuSlider()
           setHeaderTheme()
           // setFooterTheme()
-          // setScrollType()
+          if (slider.dataset.mobile == 'false') {
+            setScrollType()
+          }
           wrapper.classList.add('_loaded')
         },
 
@@ -100,20 +105,24 @@ function mobileSlider() {
         },
 
         // Событие смены
-        // resize() {
-        // setScrollType()
-        // },
+        resize() {
+          if (slider.dataset.mobile == 'false') {
+            setScrollType()
+          }
+        },
       }
     })
     pageSlider.init()
   }
 
-  if (window.innerWidth <= 576 && slider.dataset.mobile == 'false') {
+  if (window.innerWidth <= 768 && slider.dataset.mobile == 'false') {
 
     if (slider.classList.contains('swiper-initialized')) {
+      // pageSlider.cssMode = true
       pageSlider.destroy()
       // window.location.reload()
     }
+
     slider.dataset.mobile = 'true'
   }
 }
@@ -207,9 +216,6 @@ function showLoader() {
 }
 
 mobileSlider()
-
-window.addEventListener('resize', () => {
-  mobileSlider()
-})
+window.addEventListener('resize', mobileSlider)
 
 export { pageSlider }

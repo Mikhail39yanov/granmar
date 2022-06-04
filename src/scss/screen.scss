@@ -109,15 +109,24 @@
   }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 768px) {
   .wrapper {
     opacity: 1;
   }
 
   .page {
     position: static;
-    // &__screen:nth-child(1) {
-    //   display: none;
-    // }
+
+    &__screen:nth-child(1) {
+      display: none;
+    }
+
+    &__pagination {
+      // display: none;
+    }
+
+    &__scroll {
+      display: none;
+    }
   }
 }

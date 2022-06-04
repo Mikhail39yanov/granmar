@@ -155,3 +155,9 @@ a {
   width: 72px;
   height: 72px;
 }
+
+@media (max-width: 768px) {
+  .wrapper {
+    opacity: 1;
+  }
+}

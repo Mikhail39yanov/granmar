@@ -129,3 +129,22 @@
     display: none;
   }
 }
+
+@media (max-width: 768px) {
+  .header {
+    position: relative;
+    transform: translate(0%, 0%);
+  }
+
+  [data-header-link]._light {
+    color: $colorBlackText;
+  }
+
+  [data-header-link]._light span,
+  [data-header-link]._light::before,
+  [data-header-link]._light::after {
+    background-color: $colorBlackText;
+  }
+
+
+}
