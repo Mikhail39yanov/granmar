@@ -152,3 +152,30 @@
     color: $colorGreyDarkDeep;
   }
 }
+
+@media (max-width:768px) {
+  .contacts {
+    &__content {
+      padding-top: 70px;
+      padding-bottom: 70px;
+    }
+  }
+}
+
+@media (max-width:576px) {
+  .contacts {
+    &__content {
+      grid-template-columns: 1fr minmax(auto, 576px) 1fr;
+      gap: 10px 0;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    &__description {}
+
+    &__feed-back {
+      grid-column: 2 / 3;
+      grid-row: 2 / 3;
+    }
+  }
+}

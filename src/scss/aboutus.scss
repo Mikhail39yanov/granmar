@@ -71,11 +71,13 @@
   .aboutus {
 
     &__content {
+      position: relative;
       display: grid;
       grid-template-columns: 1fr minmax(auto, 768px) 1fr;
       padding-top: 70px;
       padding-bottom: 20px;
       gap: 20px;
+      height: 100%;
     }
 
     &__body {
@@ -96,8 +98,21 @@
     }
 
     &__stone-2 {
-      width: 50%;
+      max-width: 100%;
+      width: 70%;
     }
   }
+}
 
+@media (max-width: 576px) {
+  .aboutus {
+
+    &__text:not(:last-child) {
+      margin-bottom: 0;
+    }
+
+    &__btn {
+      margin-top: 17px;
+    }
+  }
 }

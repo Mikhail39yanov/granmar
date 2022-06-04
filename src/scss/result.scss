@@ -90,4 +90,92 @@
     margin-top: 16px;
     transform: translate(-50%, 0px);
   }
+
+  &__btn {
+    display: none;
+  }
+
+  &__scrollbar {
+    display: none;
+  }
+}
+
+@media (max-width:768px) {
+  .result {
+
+    &__content {
+      display: grid;
+      grid-template-columns: 1fr minmax(auto, 768px) 1fr;
+      gap: 20px 0px;
+      padding-left: 20px;
+      padding-right: 20px;
+      padding-bottom: 70px;
+    }
+
+    &__body {
+      grid-column: 2 / 3;
+      padding: 0;
+    }
+
+    &__slider-result {
+      grid-column: 2 / 3;
+      grid-row: 2 / 3;
+    }
+
+    &__text-mini {
+      margin-bottom: 18px;
+      color: #525252;
+    }
+
+    &__subtitle {
+      margin-bottom: 18px;
+    }
+  }
+
+  .slider-result {
+
+    &__button-prev,
+    &__button-next {
+      display: none;
+    }
+
+    &__btn {
+      display: inline-grid;
+      color: #F7F7F7;
+    }
+
+    &__button-wrapper {
+      margin-top: 50px;
+    }
+
+    &__scrollbar {
+      position: absolute;
+      bottom: 66px;
+      right: 0;
+      display: block;
+      height: 4px;
+      width: 100%;
+      background-color: #171717;
+    }
+
+    &__drag-scroll {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 4px;
+      background-color: $colorWhite;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .slider-result {
+    &__wrapper {
+      height: 250px;
+    }
+
+    &__button-wrapper {
+      left: 68%;
+    }
+  }
 }

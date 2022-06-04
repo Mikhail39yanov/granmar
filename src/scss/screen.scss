@@ -117,7 +117,7 @@
   .page {
     position: static;
 
-    &__screen:nth-child(1) {
+    &__wrapper li._hidden {
       display: none;
     }
 

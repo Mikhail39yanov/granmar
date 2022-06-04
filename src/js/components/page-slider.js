@@ -88,10 +88,10 @@ function mobileSlider() {
       on: {
         // События инициализации
         init() {
-          menuSlider()
-          setHeaderTheme()
-          // setFooterTheme()
           if (slider.dataset.mobile == 'false') {
+            menuSlider()
+            setHeaderTheme()
+            setFooterTheme()
             setScrollType()
           }
           wrapper.classList.add('_loaded')
@@ -99,9 +99,11 @@ function mobileSlider() {
 
         // Событие смены слайда
         slideChange() {
-          // showLoader()
-          setHeaderTheme()
-          setFooterTheme()
+          if (slider.dataset.mobile == 'false') {
+            // showLoader()
+            setHeaderTheme()
+            setFooterTheme()
+          }
         },
 
         // Событие смены

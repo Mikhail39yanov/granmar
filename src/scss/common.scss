@@ -156,8 +156,27 @@ a {
   height: 72px;
 }
 
+.disable-scroll {
+  position: fixed;
+  overflow: hidden;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+
 @media (max-width: 768px) {
   .wrapper {
     opacity: 1;
+  }
+
+  .text-mini {
+    color: $colorGrey;
+  }
+}
+
+@media (max-width: 576px) {
+  .subtitle {
+    font-size: 28px;
   }
 }

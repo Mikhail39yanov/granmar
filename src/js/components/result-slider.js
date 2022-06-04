@@ -6,7 +6,7 @@ const resultSlider = new Swiper('.slider-result', {
   wrapperClass: 'slider-result__wrapper',
   slideClass: 'slider-result__slide',
   spaceBetween: 25,
-  slidesPerView: 1.5,
+  slidesPerView: 1.2,
   grabCursor: true,
   nested: true,
   speed: 800,
@@ -19,10 +19,10 @@ const resultSlider = new Swiper('.slider-result', {
     prevEl: '.slider-result__button-prev',
   },
   // Скролл
-  // scrollbar: {
-  //   el: '.slider-result__scrollbar',
-  //   dragClass: 'slider-result__drag-scroll',
-  //   // Возможность перетаскивать скролл
-  //   draggable: true,
-  // },
+  scrollbar: {
+    el: '.slider-result__scrollbar',
+    dragClass: 'slider-result__drag-scroll',
+    // Возможность перетаскивать скролл
+    draggable: true,
+  },
 })

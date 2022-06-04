@@ -101,7 +101,7 @@
       background-color: $colorBlackText;
       width: 100%;
       height: 2px;
-      transition: background-color .3s linear;
+      transition: background-color .3s linear, transform .3s linear;
     }
 
     &__burger::after,
@@ -111,7 +111,7 @@
       left: 0;
       background-color: $colorBlackText;
       height: 2px;
-      transition: background-color .3s linear;
+      transition: background-color .3s linear, transform .3s linear;
     }
 
     &__burger::before {
@@ -123,11 +123,84 @@
       bottom: 0;
       width: 100%;
     }
+
+    &__burger._active:before {
+      transform: rotate(45deg);
+      top: 8px;
+    }
+
+    &__burger._active::after {
+      transform: rotate(-45deg);
+      bottom: 8px;
+    }
+
+    &__burger._active span {
+      transform: scale(0);
+    }
+
+    &__link {
+      grid-column: 1 / 5;
+      position: absolute;
+      top: 500%;
+      left: 50%;
+      right: 0;
+      bottom: 100%;
+      z-index: 2;
+      display: none;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      color: $colorWhite;
+      z-index: 2;
+      transform: translate(-50%, 100%);
+    }
+
+    &__link._active {
+      display: block;
+    }
   }
 
   .menu {
-    display: none;
+    opacity: 0;
+    visibility: hidden;
+    grid-column: 1 / 5;
+    align-items: start;
+    position: absolute;
+    top: 0;
+    left: -20px;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    width: 100vw;
+    height: 100%;
+    min-height: 100vh;
+    overflow-y: auto;
+    background-color: $colorBlack;
+    padding: 100px 20px 125px 20px;
+    transition: opacity .3s linear, visibility .3s linear;
+
+    &__list {
+      grid-auto-flow: row;
+      gap: 40px;
+      justify-items: center;
+    }
+
+    &__link {
+      color: $colorWhite;
+    }
   }
+
+  .menu._active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  [data-open-menu]._active span,
+  [data-open-menu]._active::before,
+  [data-open-menu]._active::after {
+    background-color: $colorWhite  !important;
+  }
+
 }
 
 @media (max-width: 768px) {
@@ -136,15 +209,18 @@
     transform: translate(0%, 0%);
   }
 
-  [data-header-link]._light {
-    color: $colorBlackText;
+  .menu__link._light {
+    color: $colorWhite;
   }
 
-  [data-header-link]._light span,
-  [data-header-link]._light::before,
-  [data-header-link]._light::after {
+  [data-open-menu]._light span,
+  [data-open-menu]._light::before,
+  [data-open-menu]._light::after {
     background-color: $colorBlackText;
   }
 
+  [data-header-logo]._light {
+    color: $colorBlackText;
+  }
 
 }
