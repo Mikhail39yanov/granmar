@@ -78,10 +78,11 @@ const pageSlider = new Swiper(slider, {
     snapOnRelease: true,
     hide: false,
   },
-  // simulateTouch: !touchCapable(),
   // отключаем инициализацию
   init: false,
+
   iOSEdgeSwipeDetection: true,
+  touchReleaseOnEdges: true,
   // События
   on: {
     // События инициализации
@@ -104,20 +105,8 @@ const pageSlider = new Swiper(slider, {
     resize() {
       setScrollType()
     },
-    // onTouchStart: function () {
-    //   return false;
-    // },
   }
 })
-
-// function touchCapable() {
-//   return (
-//     'ontouchstart' in window ||
-//     (window.DocumentTouch && document instanceof window.DocumentTouch) ||
-//     navigator.maxTouchPoints > 0 ||
-//     window.navigator.msMaxTouchPoints > 0
-//   );
-// };
 
 // Перейти к нужному слайду
 function menuSlider() {
@@ -217,4 +206,8 @@ function showLoader() {
 
 pageSlider.init()
 
+// setTimeout(() => {
+//   pageSlider.slideNext(1000)
+// }, 2000)
+// slidePrev
 export { pageSlider }
