@@ -1,5 +1,7 @@
-import Swiper, { Navigation, Pagination, Keyboard, Mousewheel, Scrollbar, FreeMode, EffectFade } from 'swiper'
-import { gsap } from "gsap"
+import Swiper, { Navigation, Pagination, Keyboard, Mousewheel, Scrollbar, FreeMode, Manipulation, Autoplay } from 'swiper'
+import { gsap } from 'gsap'
+import { closeMenu } from './menu-functions/index.js'
+import { smoothScroll } from './helper-functions/index.js'
 
 const wrapper = document.querySelector('.wrapper')
 const slider = document.querySelector('.page')
@@ -7,127 +9,115 @@ const headerLinks = document.querySelectorAll('[data-header-link]')
 const headerLinksSlide = document.querySelectorAll('.menu__link')
 const footer = document.querySelector('.footer')
 const loader = document.querySelector('.page-loader')
+const menu = document.querySelector('[data-menu]')
 
 // ,On
-let pageSlider = undefined
+const pageSlider = new Swiper(slider, {
+  modules: [Navigation, Pagination, Keyboard, Mousewheel, Scrollbar, FreeMode, Manipulation, Autoplay],
+  // Свои классы
+  wrapperClass: 'page__wrapper',
+  slideClass: 'page__screen',
 
-function mobileSlider() {
-  // console.log(pageSlider)
+  // Вертикальный слайдер
+  direction: 'vertical',
 
-  if (window.innerWidth > 768) {
-    slider.dataset.mobile = 'false'
+  // Кол-во слайдов для показа
+  slidesPerView: 'auto',
 
-    pageSlider = new Swiper(slider, {
-      modules: [Navigation, Pagination, Keyboard, Mousewheel, Scrollbar, FreeMode, EffectFade],
-      // Свои классы
-      wrapperClass: 'page__wrapper',
-      slideClass: 'page__screen',
+  // a11y: true,
+  // Управление клавиатурой
+  keyboard: {
+    // вкл/выкл
+    enabled: true,
+    // вкл/выкл когда слайдер в пределах вьюпорта
+    onlyInViewport: true,
+    // вкл/выкл управление pageUp, pageDown
+    pageUpDown: true,
+  },
 
-      // Вертикальный слайдер
-      direction: 'vertical',
+  // autoplay: {
+  //   delay: 3000,
+  //   disableOnInteraction: false,
+  // },
 
-      // Кол-во слайдов для показа
-      slidesPerView: 'auto',
+  // Управление колесом мыши
+  mousewheel: {
+    // чувствительность колеса
+    sensitivity: 1,
+    //класс обьекта на котором будет срабатывать прокрутка мыши
+    // eventsTarget: '.page'
+  },
 
-      // Нужно при detroy, чтобы работал скрол на мыше на маленьких экранах
-      // cssMode: true,
+  // Отключение функционала если слайдов меньше чем нужно
+  watchOverflow: true,
+  // Скорость
+  // speed: 3000,
+  speed: 0,
+  // Обновить свайпер при изменении элементов слайдера
+  observer: true,
+  // Обновить свайпер при изменении родительских элементов слайдера
+  observeParents: true,
+  // Обновить свайпер при изменении дочерних элементов слайдера
+  observeSlideChildren: true,
 
-      freeMode: false,
-      // a11y: true,
-      // Управление клавиатурой
-      keyboard: {
-        // вкл/выкл
-        enabled: true,
-        // вкл/выкл когда слайдер в пределах вьюпорта
-        onlyInViewport: true,
-        // вкл/выкл управление pageUp, pageDown
-        pageUpDown: true,
-      },
+  // Навигация
+  // Булеты, текущее положение, прогрессбар
+  pagination: {
+    el: '.page__pagination',
+    type: 'bullets',
+    clickable: true,
+    bulletClass: 'page__bullet',
+    bulletActiveClass: 'page__bullet--active',
+  },
+  // Скролл
+  scrollbar: {
+    el: '.page__scroll',
+    dragClass: 'page__drag-scroll',
+    // Возможность перетаскивать скролл
+    draggable: true,
+    snapOnRelease: true,
+    hide: false,
+  },
+  // simulateTouch: !touchCapable(),
+  // отключаем инициализацию
+  init: false,
+  iOSEdgeSwipeDetection: true,
+  // События
+  on: {
+    // События инициализации
+    init() {
+      menuSlider()
+      setHeaderTheme()
+      setFooterTheme()
+      setScrollType()
+      wrapper.classList.add('_loaded')
+    },
 
-      // Управление колесом мыши
-      mousewheel: {
-        // чувствительность колеса
-        sensitivity: 1,
-        //класс обьекта на котором будет срабатывать прокрутка мыши
-        // eventsTarget: '.page'
-      },
+    // Событие смены слайда
+    slideChange() {
+      // showLoader()
+      setHeaderTheme()
+      setFooterTheme()
+    },
 
-      // Отключение функционала если слайдов меньше чем нужно
-      watchOverflow: true,
-      // Скорость
-      // speed: 3000,
-      speed: 0,
-      // Обновить свайпер при изменении элементов слайдера
-      observer: true,
-      // Обновить свайпер при изменении родительских элементов слайдера
-      observeParents: true,
-      // Обновить свайпер при изменении дочерних элементов слайдера
-      observeSlideChildren: true,
-
-      // Навигация
-      // Булеты, текущее положение, прогрессбар
-      pagination: {
-        el: '.page__pagination',
-        type: 'bullets',
-        clickable: true,
-        bulletClass: 'page__bullet',
-        bulletActiveClass: 'page__bullet--active',
-      },
-      // Скролл
-      scrollbar: {
-        el: '.page__scroll',
-        dragClass: 'page__drag-scroll',
-        // Возможность перетаскивать скролл
-        draggable: true,
-      },
-
-      // отключаем инициализацию
-      init: false,
-
-      // События
-      on: {
-        // События инициализации
-        init() {
-          if (slider.dataset.mobile == 'false') {
-            menuSlider()
-            setHeaderTheme()
-            setFooterTheme()
-            setScrollType()
-          }
-          wrapper.classList.add('_loaded')
-        },
-
-        // Событие смены слайда
-        slideChange() {
-          if (slider.dataset.mobile == 'false') {
-            // showLoader()
-            setHeaderTheme()
-            setFooterTheme()
-          }
-        },
-
-        // Событие смены
-        resize() {
-          if (slider.dataset.mobile == 'false') {
-            setScrollType()
-          }
-        },
-      }
-    })
-    pageSlider.init()
+    // Событие смены
+    resize() {
+      setScrollType()
+    },
+    // onTouchStart: function () {
+    //   return false;
+    // },
   }
+})
 
-  if (window.innerWidth <= 768 && slider.dataset.mobile == 'false') {
-
-    if (slider.classList.contains('swiper-initialized')) {
-      // pageSlider.cssMode = true
-      pageSlider.destroy()
-      // window.location.reload()
-    }
-
-    slider.dataset.mobile = 'true'
-  }
-}
+// function touchCapable() {
+//   return (
+//     'ontouchstart' in window ||
+//     (window.DocumentTouch && document instanceof window.DocumentTouch) ||
+//     navigator.maxTouchPoints > 0 ||
+//     window.navigator.msMaxTouchPoints > 0
+//   );
+// };
 
 // Перейти к нужному слайду
 function menuSlider() {
@@ -137,12 +127,18 @@ function menuSlider() {
         event.preventDefault()
         const dataLink = headerLink.getAttribute('data-link')
 
-        pageSlider.slides.forEach((slide, index) => {
-          if (slide.id === dataLink) {
-            pageSlider.slideTo(index)
-          }
-          return
-        })
+        if (menu.classList.contains('_active')) {
+          closeMenu()
+          const path = headerLink.dataset.link
+          smoothScroll(path)
+        } else {
+          pageSlider.slides.forEach((slide, index) => {
+            if (slide.id === dataLink) {
+              pageSlider.slideTo(index)
+            }
+            return
+          })
+        }
       })
     })
   }
@@ -178,10 +174,11 @@ function setFooterTheme() {
   }
 }
 
+// Тип скролла
 function setScrollType() {
   if (wrapper.classList.contains('_free')) {
     wrapper.classList.remove('_free')
-    pageSlider.params.freeMode = false
+    pageSlider.params.freeMode.enabled = false
   }
 
   for (let index = 0; index < pageSlider.slides.length; index++) {
@@ -192,13 +189,14 @@ function setScrollType() {
       const pageSlideContentHeight = pageSlideContent.offsetHeight
       if (pageSlideContentHeight > window.innerHeight) {
         wrapper.classList.add('_free')
-        pageSlider.params.freeMode = true
+        pageSlider.params.freeMode.enabled = true
         break
       }
     }
   }
 }
 
+// Анимация
 const tl = gsap.timeline()
 
 function showLoader() {
@@ -217,7 +215,6 @@ function showLoader() {
     { delay: 1, duration: 0.75, y: '-120%', ease: 'none' })
 }
 
-mobileSlider()
-window.addEventListener('resize', mobileSlider)
+pageSlider.init()
 
 export { pageSlider }

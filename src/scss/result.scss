@@ -44,6 +44,31 @@
   &__btn {
     margin-top: 20px;
     color: $colorWhiteText;
+
+    transition: background-color .3s linear, color .3s linear;
+
+    &:hover {
+      background-color: $colorWhite;
+      color: $colorBlack;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &:focus-visible {
+      background-color: $colorWhite;
+      color: $colorBlack;
+    }
+
+
+    &:hover svg {
+      stroke: $colorBlack;
+    }
+
+    &:focus-visible svg {
+      stroke: $colorBlack;
+    }
   }
 
   &__icon {
@@ -93,6 +118,35 @@
 
   &__btn {
     display: none;
+  }
+
+  &__button-prev,
+  &__button-next {
+    transition: background-color .3s linear;
+
+    &:hover {
+      background-color: $colorWhite;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &:focus-visible {
+      background-color: $colorWhite;
+    }
+
+    & svg {
+      transition: stroke .3s linear;
+    }
+
+    &:hover svg {
+      stroke: $colorBlack;
+    }
+
+    &:focus-visible svg {
+      stroke: $colorBlack;
+    }
   }
 
   &__scrollbar {

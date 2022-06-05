@@ -5,6 +5,11 @@ html {
   box-sizing: border-box;
 }
 
+html,
+body {
+  overscroll-behavior: none;
+}
+
 *,
 *::before,
 *::after {
@@ -44,11 +49,39 @@ a {
 .btn-primary {
   display: inline-grid;
   grid-auto-flow: column;
+  padding: 1px;
   gap: 5px;
   align-items: center;
   @include setFontStyleNotoSans();
   font-size: 14px;
   font-weight: $fontWeightRegular;
+  transition: background-color .3s linear, color .3s linear;
+
+  &:hover {
+    background-color: $colorBlack;
+    color: $colorWhite;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    background-color: $colorBlack;
+    color: $colorWhite;
+  }
+
+  & svg {
+    transition: stroke .3s linear;
+  }
+
+  &:hover svg {
+    stroke: $colorWhite;
+  }
+
+  &:focus-visible svg {
+    stroke: $colorWhite;
+  }
 }
 
 .btn-second {
@@ -59,6 +92,24 @@ a {
   font-size: 14px;
   font-weight: $fontWeightRegular;
   color: $colorWhiteText;
+  transition: background-color .3s linear, color .3s linear, border .3s linear;
+  border: 1px solid transparent;
+
+  &:hover {
+    background-color: $colorWhite;
+    color: $colorBlack;
+    border-color: $colorBlack;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    background-color: $colorWhite;
+    color: $colorBlack;
+    border-color: $colorBlack;
+  }
 }
 
 .subtitle {

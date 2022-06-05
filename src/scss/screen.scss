@@ -64,6 +64,7 @@
 .screen {
   position: relative;
   flex: 1 0 100%;
+  // touch-action: pan-y;
 
   &__hero {
     display: flex;

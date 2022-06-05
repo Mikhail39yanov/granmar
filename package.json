@@ -44,6 +44,7 @@
   },
   "dependencies": {
     "gsap": "^3.10.4",
+    "just-validate": "^3.8.1",
     "swiper": "^7.4.1"
   }
 }

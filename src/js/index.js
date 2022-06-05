@@ -1,11 +1,12 @@
-import isWebp from './components/is-webp.js'
+import { isWebp } from './components/is-webp.ts'
 import { hello } from './components/greet.ts'
-import { pageSlider } from './components/page-slider.js'
-import { heroSwiper } from './components/hero-slider.js'
-import { resultSwiper } from './components/result-slider.js'
-import { menu } from './components/menu.js'
+import './components/page-slider.js'
+import './components/hero-slider.ts'
+import './components/result-slider.ts'
+import './components/menu.js'
+import './components/validate-contacts.js'
+import './components/input-mask.js'
+import './components/button-colobarate.ts'
 
 isWebp()
 // hello('TypeScript')
-
-
