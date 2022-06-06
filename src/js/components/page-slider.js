@@ -17,13 +17,10 @@ const pageSlider = new Swiper(slider, {
   // Свои классы
   wrapperClass: 'page__wrapper',
   slideClass: 'page__screen',
-
   // Вертикальный слайдер
   direction: 'vertical',
-
   // Кол-во слайдов для показа
   slidesPerView: 'auto',
-
   // a11y: true,
   // Управление клавиатурой
   keyboard: {
@@ -34,7 +31,6 @@ const pageSlider = new Swiper(slider, {
     // вкл/выкл управление pageUp, pageDown
     pageUpDown: true,
   },
-
   // autoplay: {
   //   delay: 3000,
   //   disableOnInteraction: false,
@@ -47,11 +43,10 @@ const pageSlider = new Swiper(slider, {
     //класс обьекта на котором будет срабатывать прокрутка мыши
     // eventsTarget: '.page'
   },
-
   // Отключение функционала если слайдов меньше чем нужно
   watchOverflow: true,
   // Скорость
-  // speed: 3000,
+  // speed: 800,
   speed: 0,
   // Обновить свайпер при изменении элементов слайдера
   observer: true,
@@ -78,11 +73,12 @@ const pageSlider = new Swiper(slider, {
     snapOnRelease: true,
     hide: false,
   },
-  // отключаем инициализацию
-  init: false,
 
   iOSEdgeSwipeDetection: true,
   touchReleaseOnEdges: true,
+
+  // отключаем инициализацию
+  init: false,
   // События
   on: {
     // События инициализации
@@ -122,9 +118,7 @@ function menuSlider() {
           smoothScroll(path)
         } else {
           pageSlider.slides.forEach((slide, index) => {
-            if (slide.id === dataLink) {
-              pageSlider.slideTo(index)
-            }
+            if (slide.id === dataLink) pageSlider.slideTo(index)
             return
           })
         }
@@ -170,19 +164,18 @@ function setScrollType() {
     pageSlider.params.freeMode.enabled = false
   }
 
-  for (let index = 0; index < pageSlider.slides.length; index++) {
-    const pageSlide = pageSlider.slides[index]
-    const pageSlideContent = pageSlide.querySelector('._content')
+  pageSlider.slides.forEach(slider => {
+    const pageSlideContent = slider.querySelector('._content')
 
     if (pageSlideContent) {
       const pageSlideContentHeight = pageSlideContent.offsetHeight
       if (pageSlideContentHeight > window.innerHeight) {
         wrapper.classList.add('_free')
         pageSlider.params.freeMode.enabled = true
-        break
+        return
       }
     }
-  }
+  })
 }
 
 // Анимация
@@ -205,6 +198,7 @@ function showLoader() {
 }
 
 pageSlider.init()
+
 
 // setTimeout(() => {
 //   pageSlider.slideNext(1000)
