@@ -11,7 +11,7 @@
     "svgSprite": "cross-env gulp svgSprite",
     "zip": "cross-env gulp deployZip --build",
     "fonts": "cross-env gulp fonts --build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d dist",
     "predeploy": "npm run build"
   },
   "author": "Mikhail <yanovmikhailco@ya.ru>",
