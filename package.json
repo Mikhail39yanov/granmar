@@ -4,12 +4,15 @@
   "private": true,
   "main": "gulpfile.js",
   "type": "module",
+  "homepage": "https://mikhail39yanov.github.io/granmar/",
   "scripts": {
-    "dev": "gulp",
-    "build": "gulp build --build",
-    "svgSprite": "gulp svgSprite",
-    "zip": "gulp deployZip --build",
-    "deploy": "gulp deployFtp --build"
+    "dev": "cross-env gulp",
+    "build": "cross-env gulp build --build",
+    "svgSprite": "cross-env gulp svgSprite",
+    "zip": "cross-env gulp deployZip --build",
+    "fonts": "cross-env gulp fonts --build",
+    "deploy": "gh-pages -d build",
+    "predeploy": "npm run build"
   },
   "author": "Mikhail <yanovmikhailco@ya.ru>",
   "devDependencies": {
@@ -21,6 +24,7 @@
     "gulp-cli": "^2.3.0",
     "gulp-file-include": "^2.3.0",
     "gulp-fonter": "^0.3.0",
+    "gulp-fonter-unx": "^0.3.0",
     "gulp-group-css-media-queries": "^1.2.2",
     "gulp-htmlmin": "^5.0.1",
     "gulp-if": "^3.0.0",
@@ -43,6 +47,8 @@
     "webpack-stream": "^7.0.0"
   },
   "dependencies": {
+    "cross-env": "^7.0.3",
+    "gh-pages": "^5.0.0",
     "gsap": "^3.10.4",
     "inputmask": "^3.3.11",
     "just-validate": "^3.8.1",

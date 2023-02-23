@@ -1,4 +1,13 @@
-import Swiper, { Navigation, Pagination, Keyboard, Mousewheel, Scrollbar, FreeMode, Manipulation, Autoplay } from 'swiper'
+import Swiper, {
+  Navigation,
+  Pagination,
+  Keyboard,
+  Mousewheel,
+  Scrollbar,
+  FreeMode,
+  Manipulation,
+  Autoplay,
+} from 'swiper'
 import { gsap } from 'gsap'
 import { closeMenu } from './menu-functions/index.js'
 import { smoothScroll } from './helper-functions/index.js'
@@ -47,7 +56,7 @@ const pageSlider = new Swiper(slider, {
   watchOverflow: true,
   // Скорость
   // speed: 800,
-  speed: 0,
+  speed: 1000,
   // Обновить свайпер при изменении элементов слайдера
   observer: true,
   // Обновить свайпер при изменении родительских элементов слайдера
@@ -101,13 +110,13 @@ const pageSlider = new Swiper(slider, {
     resize() {
       setScrollType()
     },
-  }
+  },
 })
 
 // Перейти к нужному слайду
 function menuSlider() {
   if (headerLinksSlide.length > 0) {
-    headerLinksSlide.forEach(headerLink => {
+    headerLinksSlide.forEach((headerLink) => {
       headerLink.addEventListener('click', (event) => {
         event.preventDefault()
         const dataLink = headerLink.getAttribute('data-link')
@@ -134,12 +143,12 @@ function setHeaderTheme() {
     const activeSlider = pageSlider.realIndex
 
     if (pageSlider.slides[activeSlider].classList.contains('page__screen--black')) {
-      headerLinks.forEach(headerLink => {
+      headerLinks.forEach((headerLink) => {
         headerLink.classList.remove('_light')
         headerLink.classList.add('_black')
       })
     } else {
-      headerLinks.forEach(headerLink => {
+      headerLinks.forEach((headerLink) => {
         headerLink.classList.remove('_black')
         headerLink.classList.add('_light')
       })
@@ -164,7 +173,7 @@ function setScrollType() {
     pageSlider.params.freeMode.enabled = false
   }
 
-  pageSlider.slides.forEach(slider => {
+  pageSlider.slides.forEach((slider) => {
     const pageSlideContent = slider.querySelector('._content')
 
     if (pageSlideContent) {
@@ -184,21 +193,19 @@ const tl = gsap.timeline()
 function showLoader() {
   loader.classList.remove('_top')
   loader.classList.add('_bot')
-  tl.fromTo('.page-loader',
+  tl.fromTo(
+    '.page-loader',
     { width: '100vw', height: '0vh', ease: 'none' },
-    { duration: 0.75, width: '100vw', height: '100vh', ease: 'none' })
-    .then(() => {
-      loader.classList.remove('_bot')
-      loader.classList.add('_top')
-    })
+    { duration: 0.75, width: '100vw', height: '100vh', ease: 'none' },
+  ).then(() => {
+    loader.classList.remove('_bot')
+    loader.classList.add('_top')
+  })
 
-  tl.fromTo('.page-loader',
-    { y: '0%', ease: 'none' },
-    { delay: 1, duration: 0.75, y: '-120%', ease: 'none' })
+  tl.fromTo('.page-loader', { y: '0%', ease: 'none' }, { delay: 1, duration: 0.75, y: '-120%', ease: 'none' })
 }
 
 pageSlider.init()
-
 
 // setTimeout(() => {
 //   pageSlider.slideNext(1000)

@@ -1,7 +1,7 @@
 import Swiper, { Navigation, Keyboard, Scrollbar, FreeMode } from 'swiper'
 
 const resultSlider = new Swiper('.slider-result', {
-  modules: [Navigation, Keyboard, Scrollbar, FreeMode,],
+  modules: [Navigation, Keyboard, Scrollbar, FreeMode],
   // Свои классы
   wrapperClass: 'slider-result__wrapper',
   slideClass: 'slider-result__slide',

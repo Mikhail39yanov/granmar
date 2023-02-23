@@ -1,6 +1,6 @@
-import gulp from 'gulp'                           // Основной модуль
-import { path } from './gulp/config/path.js'      // Импорт путей
-import { plugins } from './gulp/config/plugins.js'// Импорт общих плагинов
+import gulp from 'gulp' // Основной модуль
+import { path } from './gulp/config/path.js' // Импорт путей
+import { plugins } from './gulp/config/plugins.js' // Импорт общих плагинов
 
 // Передаем значения в глобальную переменную
 global.app = {
@@ -49,6 +49,7 @@ const build = gulp.series(reset, mainTasks)
 export { dev }
 export { build }
 export { svgSprite }
+export { fonts }
 // export { deployZip }
 // export { deployFtp }
 
